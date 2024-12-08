@@ -25,14 +25,21 @@ def input_information_course():
     return courses
 
 def list_of_students(students):
-    print("List of Students in class: \n")
-    for student in students:
-        print(f"Stundent ID: {student['id']}, Student Name: {student['name']}, DoB: {student['DoB']}")
+    if not students:
+        print("The list of students is empty. Please, enter the information of student in class. \n")
+    else:
+        print("List of Students in class: \n")
+        for student in students:
+            print(f"Stundent ID: {student['id']}, Student Name: {student['name']}, DoB: {student['DoB']}")
+    
             
 def list_of_courses(courses):
-    print("List of courses in class: \n")
-    for course in courses:
-        print(f"ID: {course['id']}, Name: {course['name']}")
+    if not courses:
+        print("The list of courses is empty. Please, enter the information of courses in class. \n")
+    else:
+        print("List of courses in class: \n")
+        for course in courses:
+            print(f"ID: {course['id']}, Name: {course['name']}")
 
 def input_marks(students, courses, marks):
     list_of_courses(courses)
@@ -41,18 +48,12 @@ def input_marks(students, courses, marks):
     if course not in marks:
         marks[course] = {}
     
-    print(f"Enter marks for students in the course {course}: ")
-    for student in students:
-        print(f"Enter marks for {student}: ")
-        student_marks = input()
-        try:
-            student_marks = float(student_marks)
-        except ValueError:
-            print("Invalid input. Please enter numeric marks.")
-            continue
-
-        marks[course][student] = student_marks
-    print(f"Make have been recorded for the course {course}")
+    list_of_students(students)
+    print("Select the student ID to input mark: ")
+    student = input()
+    
+    marks[course][student] = float(input("Enter mark of student: "))
+    return marks
 
 def print_marks(students, marks):
     course = input("What course do you want to find: ")
@@ -67,6 +68,8 @@ def print_marks(students, marks):
                 print("Student id : {}, Mark : Not entered".format(student["id"]))
 
 marks = {}
+students = []
+courses = []
 
 
 while (True):
@@ -83,9 +86,9 @@ while (True):
     if (choice == 0):
         break
     elif (choice == 1):
-        students = input_number()
+        students = input_information_student()
     elif (choice == 2):
-        courses = input_number()
+        courses = input_information_course()
     elif (choice == 3):
         list_of_courses(courses)
     elif (choice == 4):
