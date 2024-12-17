@@ -1,11 +1,20 @@
-class Student:
-    def __init__(self, student_id, name, dob):
-        self.id = student_id
+class Person:
+    def __init__(self, name, dob):
         self.name = name
         self.dob = dob
-
+        
     def __str__(self):
-        return f"Student ID: {self.id}, Student Name: {self.name}, DoB: {self.dob}"
+        return f"Student Name: {self.name}, DoB: {self.dob}"
+
+class Student(Person):
+    def __init__(self, student_id, name, dob):
+        super().__init__(name,dob)
+        self.id = student_id
+        
+    def __str__(self):
+        return f"Student ID: {self.id}, {super().__str__()}"
+    
+    
 
 
 class Course:
