@@ -119,25 +119,29 @@ def main():
     school = School()
 
     while True:
-        print("\n---Enter your choice---")
-        print("--0. Exit the program--")
-        print("--1. Input students----")
-        print("--2. Input courses-----")
-        print("--3. Show list of courses------")
-        print("--4. Show list of students-----")
-        print("--5. Input marks--------")
-        print("--6. Show mark---------\n")
+        print("\n----------------------")
+        print(" Enter your choice ")
+        print("----------------------")
+        print("|0. Exit the program |")
+        print("|1. Input students   |")
+        print("|2. Input courses    |")
+        print("|3. List of students |")
+        print("|4. List of courses  |")
+        print("|5. Input marks      |")
+        print("|6. Show mark        |")
+        print("----------------------\n")
+        
 
         choice = int(input())
         if choice == 0:
             break
         elif choice == 1:
-            school.input_information_student()
+            school.input_student()
         elif choice == 2:
-            school.input_information_course()
-        elif choice == 3:
-            school.list_of_courses()
+            school.input_course()
         elif choice == 4:
+            school.list_of_courses()
+        elif choice == 3:
             school.list_of_students()
         elif choice == 5:
             school.input_marks()
