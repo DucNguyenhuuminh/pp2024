@@ -55,28 +55,18 @@ class School:
     def __init__(self):
         self.students = []
         self.courses = []
-        self.marks = {}
+        self.marks = Mark()
 
-    def input_number(self, messange):
-        return int(input(messange))
-
-    def input_information_student(self):
-        number_students = self.input_number("Enter number of students: ")
-        print("Enter the information of students: \n")
-        for _ in range(number_students):
-            student_id = input("Input id: ")
-            name = input("Input name: ")
-            dob = input("Input DoB (dd/mm/yyyy): ")
-            student = Student(student_id, name, dob)
+    def input_student(self):
+        number_student = int(input("Enter number of students in class: "))
+        for _ in range(number_student):
+            student = Student.input()
             self.students.append(student)
-
-    def input_information_course(self):
-        number_courses = self.input_number("Enter number of courses: ")
-        print("Enter the information of courses: \n")
-        for _ in range(number_courses):
-            course_id = input("Input id: ")
-            name = input("Input name of course: ")
-            course = Course(course_id, name)
+            
+    def input_course(self):
+        number_course = int(input("Enter number of courses: "))
+        for _ in range(number_course):
+            course = Course.input()
             self.courses.append(course)
 
     def list_of_students(self):
@@ -97,15 +87,23 @@ class School:
 
     def input_marks(self):
         self.list_of_courses()
-        course_id = input("Select the course id: ")
-        if course_id not in self.marks:
-            self.marks[course_id] = {}
-
+        course_id = input("Select the course ID: ")
+        selected_course = next((course for course in self.courses if course.id == course_id), None)
+        
+        if not selected_course:
+            print("Course ID not found!\n")
+            return
+        
         self.list_of_students()
-        student_id = input("Select the student ID to input mark: ")
-
-        self.marks[course_id][student_id] = float(input("Enter mark of student: "))
-
+        student_id = input("Select the student ID to input marks: ")
+        selected_student = next((student for student in self.students if student.id == student_id), None)
+        
+        if not selected_student:
+            print("Student ID not found!")
+            return
+        
+        self.marks.input_marks(selected_course,selected_student)
+        
     def print_marks(self):
         course_id = input("What course do you want to find: ")
 
