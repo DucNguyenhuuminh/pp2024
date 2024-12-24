@@ -5,7 +5,7 @@ class Person:
         
     def __str__(self):
         return f"Student Name: {self.name}, DoB: {self.dob}"
-
+    
 class Student(Person):
     def __init__(self, student_id, name, dob):
         super().__init__(name,dob)
@@ -14,9 +14,13 @@ class Student(Person):
     def __str__(self):
         return f"Student ID: {self.id}, {super().__str__()}"
     
+    @classmethod
+    def input(cls):
+        id = input("Input Student ID: ")
+        name = input("Input Student Name: ")
+        Dob = input("Input DoB (dd/mm/yyyy): ")
+        return cls(id,name,Dob)
     
-
-
 class Course:
     def __init__(self, course_id, name):
         self.id = course_id
@@ -24,7 +28,12 @@ class Course:
 
     def __str__(self):
         return f"Course ID: {self.id}, Course Name: {self.name}"
-
+    
+    @classmethod
+    def input(cls):
+        id = input("Input Course ID: ")
+        name = input("Input Coure Name: ")
+        return cls(id,name)
 
 class School:
     def __init__(self):
