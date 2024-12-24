@@ -34,6 +34,22 @@ class Course:
         id = input("Input Course ID: ")
         name = input("Input Coure Name: ")
         return cls(id,name)
+    
+class Mark:
+    def __init__(self):
+        self.marks_infor = {}
+        
+    def input(self, student, course):
+        mark = float(input(f"Enter mark for student {student.id} in course {course.id}: "))
+        if course.id not in self.marks_infor:
+            self.marks_infor[course.id] = {}
+        self.marks_infor[course.id][student.id] = mark
+        
+    def show(self, student, course):
+        if course.id in self.marks_infor and student.id in self.marks_infor[course.id]:
+            print(f"Student ID: {student.id}, Mark: {self.marks_infor[course.id],[student.id]}")
+        else:
+            print(f"Student ID: {student.id}, Mark: Not entered")
 
 class School:
     def __init__(self):
